@@ -1,4 +1,6 @@
 from string import join, rsplit
+from urlparse import urljoin
+from urllib import pathname2url
 
 
 # Global variables
@@ -23,7 +25,7 @@ def get_file_absolute_path_from_playlist_element(i_element_absolute_file_path):
     Returns the absolute path of the element which can be understood by the FILE protocol.
     i_element_absolute_file_path : The absolute path of the playlist element.
     '''
-    pass
+    return urljoin('file:', pathname2url(i_element_absolute_file_path))
 
 
 def write_playlist_start(i_playlist_file_path):
