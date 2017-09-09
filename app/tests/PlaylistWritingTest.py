@@ -9,7 +9,7 @@ class PlaylistWritingTest(unittest.TestCase):
 
     def test_get_playlist_file_path(self):
         playlist_file_path = get_playlist_file_path(self.TV_SERIES_FOLDER)
-        expected = 'C:\\Daredevil\\Daredevil S02 ' + PLAYLIST_NAME_SUFFIX + PLAYLIST_EXTENSION
+        expected = 'C:\\Daredevil\\Daredevil S02' + PLAYLIST_NAME_SUFFIX + PLAYLIST_EXTENSION
         self.assertEqual(expected, playlist_file_path, 'Expected "{0}" to be equal to "{1}".'.format(playlist_file_path, expected))
 
 
