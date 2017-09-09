@@ -15,8 +15,7 @@ def get_playlist_file_path(i_folder_absolute_path):
     '''
     folders = i_folder_absolute_path.split('\\')
     playlist_file_name_components = folders[-2:]
-    playlist_file_name_components.append(PLAYLIST_NAME_SUFFIX)
-    playlist_file_name = join(playlist_file_name_components, " ") + PLAYLIST_EXTENSION
+    playlist_file_name = join(playlist_file_name_components, " ") + PLAYLIST_NAME_SUFFIX + PLAYLIST_EXTENSION
     return rsplit(i_folder_absolute_path, '\\', 1)[0] + '\\' + playlist_file_name
 
 
