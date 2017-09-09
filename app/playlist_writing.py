@@ -5,7 +5,7 @@ from urllib import pathname2url
 
 # Global variables
 PLAYLIST_EXTENSION = '.xspf'
-PLAYLIST_NAME_SUFFIX = '(follow-up)'
+PLAYLIST_NAME_SUFFIX = ' (follow-up)'
 
 
 def get_playlist_file_path(i_folder_absolute_path):
@@ -33,7 +33,12 @@ def write_playlist_start(i_playlist_file_path):
     Writes the beginning of the XSPF file.
     i_playlist_file_path : The absolute path of the XSPF playlist file. 
     '''
-    pass
+    with open(i_playlist_file_path, "w") as f :
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">\n')
+        f.write('\t<title>%s</title>\n'.format(''))
+        f.write('\t\t<trackList>\n')
+        f.close()
 
 
 def write_playlist_element(i_playlist_file_path, i_idx, i_element_absolute_path):
