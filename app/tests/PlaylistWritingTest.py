@@ -9,7 +9,7 @@ class PlaylistWritingTest(unittest.TestCase):
     TV_SERIES_FOLDER = 'C:\\Daredevil\\S02'
 
     def assertFileContains(self, i_file_to_read_descriptor, i_string_to_look):
-        ''''
+        '''
             Returns whether the element was found.
             i_file_to_read_descriptor : File descriptor for the element to read
             i_string_to_look          : The String to look for
