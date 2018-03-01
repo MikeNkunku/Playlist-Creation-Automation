@@ -9,12 +9,13 @@ class PlaylistWritingTest(unittest.TestCase):
     TV_SERIES_FOLDER = 'C:\\Daredevil\\S02'
 
     @staticmethod
-    def assertFileContains(i_file_to_read_descriptor, i_string_to_look):
+    def assertFileContains(i_file_to_read_descriptor, i_string_to_look: str) -> bool:
         """
             Returns whether the element was found.
 
-            i_file_to_read_descriptor : File descriptor for the element to read
-            i_string_to_look          : The String to look for
+            Args:
+                i_file_to_read_descriptor : File descriptor for the element to read
+                i_string_to_look          : The String to look for
         """
 
         found = False
@@ -37,7 +38,7 @@ class PlaylistWritingTest(unittest.TestCase):
 
     def test_write_playlist_start(self):
         file_path = get_playlist_file_path(gettempdir())
-        with open(file_path, mode='w+b') as f:
+        with open(file_path, mode='w') as f:
             write_playlist_start(f)
             for expected_elt in ['<?xml', '<playlist xmlns="', '<title>', '<trackList>']:
                 self.assertTrue(self.assertFileContains(f, expected_elt))
