@@ -3,8 +3,8 @@ from urllib.request import pathname2url
 
 
 # Global variables
-PLAYLIST_EXTENSION = '.xspf'
-PLAYLIST_NAME_SUFFIX = ' (follow-up)'
+PLAYLIST_EXTENSION = ".xspf"
+PLAYLIST_NAME_SUFFIX = " (follow-up)"
 
 
 def write_playlist(i_folder_absolute_path):
@@ -51,12 +51,12 @@ def write_playlist_start(i_playlist_file_descriptor):
             i_playlist_file_descriptor : The file descriptor on the absolute path of the XSPF playlist file.
     """
 
-    with i_playlist_file_descriptor as f :
-        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        f.write('<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">\n')
+    with i_playlist_file_descriptor as f:
+        f.write("<?xml version='1.0' encoding='UTF-8'?>\n")
+        f.write("<playlist xmlns='http://xspf.org/ns/0/' xmlns:vlc='http://www.videolan.org/vlc/playlist/ns/0/' version='1'>\n")
         title = i_playlist_file_descriptor.name.split('\\')[-1].replace(PLAYLIST_EXTENSION, '')
-        f.write('\t<title>{0}</title>\n'.format(title))
-        f.write('\t\t<trackList>\n')
+        f.write("\t<title>{0}</title>\n".format(title))
+        f.write("\t\t<trackList>\n")
 
 
 def write_playlist_element(i_playlist_file_path, i_idx, i_element_absolute_path):
