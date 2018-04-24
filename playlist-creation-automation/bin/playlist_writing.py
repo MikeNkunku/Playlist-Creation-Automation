@@ -71,7 +71,21 @@ def write_playlist_element(i_playlist_file_descriptor: object, i_idx: int, i_ele
             i_element_absolute_path     : The absolute path of the element.
     """
 
-    pass
+    with i_playlist_file_descriptor as f:
+        f.write("\t\t<track>\n")
+        f.write("\t\t\t<location>{0}</location>".format(
+            get_file_absolute_path_from_playlist_element(i_element_absolute_path))
+        )
+        f.write("\t\t\t<title>{0}</title>".format(
+            # get title from file
+        ))
+        f.write("\t\t\t<duration>{0}</duration>".format(
+            # get file duration
+        ))
+        f.write('\t\t\t<extension application="http://www.videolan.org/vlc/playlist/0">')
+        f.write("\t\t\t\t<vlc:id>{0}</vlc:id>".format(i_idx))
+        f.write('\t\t\t</extension>')
+        f.write("\t\t</track>\n")
 
 
 def write_playlist_end(i_playlist_file_descriptor: object, i_nb_elts: int):
