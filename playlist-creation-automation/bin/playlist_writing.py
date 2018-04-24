@@ -18,7 +18,7 @@ def write_playlist(i_folder_absolute_path: str):
     pass
 
 
-def get_playlist_file_path(i_folder_absolute_path: str):
+def get_playlist_file_path(i_folder_absolute_path: str) -> str:
     """
         Returns the playlist file name.
 
@@ -33,7 +33,7 @@ def get_playlist_file_path(i_folder_absolute_path: str):
     return i_folder_absolute_path.rsplit('\\', 1)[0] + '\\' + playlist_file_name
 
 
-def get_file_absolute_path_from_playlist_element(i_element_absolute_file_path: object):
+def get_file_absolute_path_from_playlist_element(i_element_absolute_file_path: str) -> str:
     """
         Returns the absolute path of the element which can be understood by the FILE protocol.
 
@@ -61,14 +61,14 @@ def write_playlist_start(i_playlist_file_descriptor: object):
         f.write("\t<trackList>\n")
 
 
-def write_playlist_element(i_playlist_file_path: object, i_idx: int, i_element_absolute_path: str):
+def write_playlist_element(i_playlist_file_descriptor: object, i_idx: int, i_element_absolute_path: str):
     """
         Adds the element in the XSPF playlist file.
 
         Args:
-            i_playlist_file_path    : The absolute path of the XSPF playlist file.
-            i_idx                   : The position of the element.
-            i_element_absolute_path : The absolute path of the element.
+            i_playlist_file_descriptor  : The file descriptor on the absolute path of the XSPF playlist file.
+            i_idx                       : The position of the element.
+            i_element_absolute_path     : The absolute path of the element.
     """
 
     pass
