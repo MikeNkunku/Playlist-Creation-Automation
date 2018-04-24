@@ -7,7 +7,7 @@ PLAYLIST_EXTENSION = ".xspf"
 PLAYLIST_NAME_SUFFIX = " (follow-up)"
 
 
-def write_playlist(i_folder_absolute_path):
+def write_playlist(i_folder_absolute_path: str):
     """
         Creates the playlist containing all the elements which are in the provided folder.
 
@@ -18,12 +18,13 @@ def write_playlist(i_folder_absolute_path):
     pass
 
 
-def get_playlist_file_path(i_folder_absolute_path):
+def get_playlist_file_path(i_folder_absolute_path: str):
     """
         Returns the playlist file name.
 
         Args:
-            i_folder_absolute_path : The absolute path of the folder in which the elements of the playlist are contained.
+            i_folder_absolute_path : The absolute path of the folder in which the elements of the playlist
+                                    are contained.
     """
 
     folders = i_folder_absolute_path.split('\\')
@@ -32,7 +33,7 @@ def get_playlist_file_path(i_folder_absolute_path):
     return i_folder_absolute_path.rsplit('\\', 1)[0] + '\\' + playlist_file_name
 
 
-def get_file_absolute_path_from_playlist_element(i_element_absolute_file_path):
+def get_file_absolute_path_from_playlist_element(i_element_absolute_file_path: object):
     """
         Returns the absolute path of the element which can be understood by the FILE protocol.
 
@@ -43,7 +44,7 @@ def get_file_absolute_path_from_playlist_element(i_element_absolute_file_path):
     return urljoin('file:', pathname2url(i_element_absolute_file_path))
 
 
-def write_playlist_start(i_playlist_file_descriptor):
+def write_playlist_start(i_playlist_file_descriptor: object):
     """
         Writes the beginning of the XSPF file.
 
@@ -52,14 +53,15 @@ def write_playlist_start(i_playlist_file_descriptor):
     """
 
     with i_playlist_file_descriptor as f:
-        f.write("<?xml version='1.0' encoding='UTF-8'?>\n")
-        f.write("<playlist xmlns='http://xspf.org/ns/0/' xmlns:vlc='http://www.videolan.org/vlc/playlist/ns/0/' version='1'>\n")
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/"' +
+                ' version="1">\n')
         title = i_playlist_file_descriptor.name.split('\\')[-1].replace(PLAYLIST_EXTENSION, '')
         f.write("\t<title>{0}</title>\n".format(title))
-        f.write("\t\t<trackList>\n")
+        f.write("\t<trackList>\n")
 
 
-def write_playlist_element(i_playlist_file_path, i_idx, i_element_absolute_path):
+def write_playlist_element(i_playlist_file_path: object, i_idx: int, i_element_absolute_path: str):
     """
         Adds the element in the XSPF playlist file.
 
@@ -72,12 +74,18 @@ def write_playlist_element(i_playlist_file_path, i_idx, i_element_absolute_path)
     pass
 
 
-def write_playlist_end(i_playlist_file_path):
+def write_playlist_end(i_playlist_file_descriptor: object, i_nb_elts: int):
     """
         Writes the end of the XSPF file.
 
         Args:
-            i_playlist_file_path : The absolute path of the XSPF playlist file.
+            i_playlist_file_descriptor  : The file descriptor on the absolute path of the XSPF playlist file.
+            i_nb_elts                   : The number of elements which have been reported in the playlist.
     """
 
-    pass
+    with i_playlist_file_descriptor as f:
+        f.write('\t<extension application="http://www.videolan.org/vlc/playlist/0">\n')
+        for i in range(i_nb_elts):
+            f.write('\t\t<vlc:item tid="' + i + '"/>\n')
+        f.write("\t</extension>\n")
+        f.write("</playlist>\n")
